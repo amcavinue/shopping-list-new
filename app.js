@@ -9,7 +9,7 @@ $(function() {
 	// Watch form submission.
 	$('#js-shopping-list-form').submit(function(e) {
 		e.preventDefault();
-		var name = $('input:first').val();
+		var name = $('input:first').val().trim();
 
 		if (state.hasOwnProperty(name)) {
 			alert('That item is already in the list!');
@@ -25,7 +25,7 @@ $(function() {
 	$('ul').on('click', "button:contains('check')", function(e) {
 		e.preventDefault();
 		var shoppingItem = $(this).closest('.shopping-item-controls').siblings('.shopping-item')[0],
-			name = $(shoppingItem).text();
+			name = $(shoppingItem).text().trim();
 		
 		state[name] = !state[name];
 		$(this).closest('div').siblings('.shopping-item').toggleClass('shopping-item__checked');
@@ -35,7 +35,7 @@ $(function() {
 	$('ul').on('click', "button:contains('delete')", function(e) {
 		e.preventDefault();
 		var shoppingItem = $(this).closest('.shopping-item-controls').siblings('.shopping-item')[0],
-			name = $(shoppingItem).text();
+			name = $(shoppingItem).text().trim();
 		
 		delete state[name];
 		$(this).closest('li').remove();
